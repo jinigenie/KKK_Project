@@ -2,12 +2,14 @@ package get_in_shape31;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 // User 클래스
 public class User {
 
 	// userList 정의
 	List<User> userList = new ArrayList<>();
+	Scanner scan = new Scanner(System.in);
 
 	// 회원가입 메소드
 	public void SignUp() {
@@ -32,6 +34,7 @@ public class User {
 	// 로그아웃 메소드
 	public void SignOut() {
 		/* 프로그램 강제 종료 */
+		System.out.println("프로그램을 종료합니다.");
 	}
 	
 	// 마이페이지 확인 메소드
@@ -39,10 +42,37 @@ public class User {
 		System.out.println("<1.훈련일지 확인 / 2.목표달성률 확인 / 3.포인트 확인 / 4.정보 확인 및 수정 / 5.로그아웃>");
 		/*
 		 * 1. 메뉴 입력받기
-		 * 2. 입력한 메뉴에 따라 각 메소드 호출(1번~4번)
+		 * 2. 입력한 메뉴에 따라 각 메소드 호출(1~4번)
 		 * 3. 입력한 메뉴가 5이면 강제 종료 -> SignOut()호출 
 		 * 4. 그 외에는 "잘못 입력" 
 		 */
+		System.out.print(">> ");
+		int mnum = scan.nextInt();
+		switch (mnum) {
+		case 1: {
+			OpenTrainingLog();
+			break;
+		}
+		case 2: {
+			AchiveGoal();
+			break;
+		}
+		case 3: {
+			ViewPoint();
+			break;
+		}
+		case 4: {
+			EditInfo();
+			break;
+		}
+		case 5: {
+			SignOut();
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + mnum);
+		}
+		
 	}
 	
 	// 훈련일지 확인 메소드
